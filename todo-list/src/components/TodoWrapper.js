@@ -22,8 +22,8 @@ function TodoWrapper() {
   return (
     <div>
       <TodoForm addItem={addItem} />
-      {todos.map((todo, index) => (
-        <TodoList key={index} task={todo} />
+      {todos.map((todo) => (
+        <TodoList key={todo.id} task={todo} />
       ))}
     </div>
   );

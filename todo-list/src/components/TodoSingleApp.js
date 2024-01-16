@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 function TodoSingleApp() {
   const [item, setItem] = useState("");
@@ -8,8 +10,14 @@ function TodoSingleApp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setTodos([...todos, { id: Math.floor(Math.random() * 1000), task: item }]);
-    console.log(todos.map((todo) => todo.task));
+    const newTodo = {
+      id: Math.floor(Math.random() * 1000),
+      task: item,
+    };
+
+    console.log(newTodo.id);
+
+    setTodos([...todos, newTodo]);
 
     setItem("");
   };
@@ -26,8 +34,14 @@ function TodoSingleApp() {
         <button type="submit">Add</button>
       </form>
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>{todo.task}</li>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            {todo.task}
+            <div>
+              <FontAwesomeIcon icon={faTrash} />
+              <FontAwesomeIcon icon={faEdit} />
+            </div>
+          </li>
         ))}
       </ul>
     </div>
